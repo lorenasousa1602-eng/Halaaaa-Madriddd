@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎉 Feliz Aniversário 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+      color: #c71585;
+    }
+
+    .layer {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.2s ease;
+      font-size: 2em;
+      margin: 10px 0;
+    }
+
+    .layer.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .emoji {
+      font-size: 3em;
+    }
+
+    .balloon {
+      position: absolute;
+      font-size: 2.5em;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="layer">🎂</div>
+    <div class="layer">Feliz</div>
+    <div class="layer">Aniversário</div>
+    <div class="layer">🎉 Muitas felicidades 🎉</div>
+    <div class="layer">💖 Tudo de bom para ti 💖</div>
+  </div>
+
+  <script>
+    const layers = document.querySelectorAll('.layer');
+
+    // Mostra cada camada em sequência
+    layers.forEach((layer, index) => {
+      setTimeout(() => {
+        layer.classList.add('show');
+      }, index * 1500);
+    });
+
+    // Balões subindo de forma aleatória
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      balloon.textContent = '🎈';
+      balloon.style.left = Math.random() * window.innerWidth + 'px';
+      balloon.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.body.appendChild(balloon);
+
+      setTimeout(() => balloon.remove(), 10000);
+    }
+
+    setInterval(createBalloon, 800);
+  </script>
+</body>
+</html>
